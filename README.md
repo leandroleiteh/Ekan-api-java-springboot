@@ -33,9 +33,9 @@ Esta é uma API REST desenvolvida para o gerenciamento de beneficiários e docum
 5. Execute a aplicação Spring Boot.
 6. Acesse a documentação da API no seu navegador através de `http://localhost:8080/swagger-ui.html`.
 7. Utilize algum testador de requisição (POSTMAN / INSOMNIA)
-8. Cole sua URI no campo indicado, e use o body abaixo de exemplo, para cadastrar o primeiro beneficiário, depois acesse outros métodos para checar validaçóes e usuabilidade.
+8. Cole sua URI no campo indicado, use o body abaixo de exemplo, para cadastrar o primeiro beneficiário. Depois acesse outros métodos para checar validaçóes e usuabilidade.
 
-body para POST: 
+Exemplo de body para POST: 
 
 
 ```{
