@@ -70,6 +70,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         beneficiaryUpdate.setName(beneficiaryInputDTO.name());
         beneficiaryUpdate.setTelNumber(beneficiaryInputDTO.telNumber());
         beneficiaryUpdate.setBirthDate(beneficiaryInputDTO.birthDate());
+        beneficiaryUpdate.setUpdateDate(LocalDateTime.now());
 
         return outputBeneficiaryAssembler(beneficiaryRepository.save(beneficiaryUpdate));
     }
