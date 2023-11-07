@@ -1,6 +1,6 @@
 # Ekan Dev Jr - API para Gerenciamento de Beneficiários e Documentos
 
-Esta é uma API RESTful desenvolvida para o gerenciamento de beneficiários e documentos. Ela foi criada com base no Spring Boot e utiliza o Spring Data JPA para interagir com o banco de dados. A API permite a criação, atualização, exclusão e recuperação de informações sobre beneficiários e seus documentos associados.
+Esta é uma API REST desenvolvida para o gerenciamento de beneficiários e documentos. Ela foi criada com base no Spring Boot e utiliza o Spring Data JPA para interagir com o banco de dados. A API permite a criação, atualização, exclusão e recuperação de informações sobre beneficiários e seus documentos associados.
 
 ## Tecnologias Utilizadas
 
@@ -9,8 +9,8 @@ Esta é uma API RESTful desenvolvida para o gerenciamento de beneficiários e do
 - Spring Data JPA
 - Springdoc OpenAPI para documentação
 - H2 Database (banco de dados em memória)
-- Lombok
-- Spring Validation
+- Lombok para otimização de código
+- Spring Validation para validar input de requisições
 
 ## Endpoints
 
@@ -18,9 +18,9 @@ Esta é uma API RESTful desenvolvida para o gerenciamento de beneficiários e do
 
 - **Listar Beneficiários**: `GET http://localhost:8080/ekan/api/beneficiary`
 - **Cadastrar Beneficiário**: `POST http://localhost:8080/ekan/api/beneficiary`
-- **Atualizar Beneficiário**: `PUT http://localhost:8080/ekan/api/beneficiary{id}`
-- **Excluir Beneficiário**: `DELETE http://localhost:8080/ekan/api/beneficiary{id}`
-- **Listar Documentos de Beneficário**: `GET http://localhost:8080/ekan/api/beneficiary{id}/documents`
+- **Atualizar Beneficiário**: `PUT http://localhost:8080/ekan/api/beneficiary/{id}`
+- **Excluir Beneficiário**: `DELETE http://localhost:8080/ekan/api/beneficiary/{id}`
+- **Listar Documentos de Beneficário**: `GET http://localhost:8080/ekan/api/beneficiary/{id}/documents`
 
 
 
@@ -31,10 +31,12 @@ Esta é uma API RESTful desenvolvida para o gerenciamento de beneficiários e do
 3. Abra o projeto em sua IDE favorita.
 4. Configure as propriedades do banco de dados no arquivo `application.properties` (por padrão, a aplicação usa o H2 Database em memória. Que já está configurado no arquivo).
 5. Execute a aplicação Spring Boot.
-6. Acesse a documentação da API no seu navegador através de `http://localhost:8080/swagger-ui.html`. Ou por algum testador de requisição (POSTMAN/ INSOMNIA)
-7. Cole sua URI no campo indicado, e use body abaixo de exemplo, para cadastrar o primeiro beneficiário, depois acesse outros métodos para checar validaçóes e usuabilidade.
+6. Acesse a documentação da API no seu navegador através de `http://localhost:8080/swagger-ui.html`.
+7. Utilize algum testador de requisição (POSTMAN / INSOMNIA)
+8. Cole sua URI no campo indicado, e use o body abaixo de exemplo, para cadastrar o primeiro beneficiário, depois acesse outros métodos para checar validaçóes e usuabilidade.
 
-body: 
+body para POST: 
+
 
 ```{
   "name": "Leandro Leite",
@@ -51,6 +53,7 @@ body:
     }
   ]
 }
+```
 
 Obs: Os campos não podem ser nulos ou vazios. Caso contrário, a ExceptionHandler lançara um exceção informando os dados inválidos.
 
