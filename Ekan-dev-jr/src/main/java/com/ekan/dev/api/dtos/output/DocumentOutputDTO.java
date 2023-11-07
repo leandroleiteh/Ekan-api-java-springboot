@@ -16,9 +16,7 @@ public record DocumentOutputDTO(
 
         LocalDateTime inclusionDate,
 
-        LocalDateTime updateDate,
-
-        BeneficiaryInputDTO beneficiaryInputDTO
+        LocalDateTime updateDate
 
 ) {
 }

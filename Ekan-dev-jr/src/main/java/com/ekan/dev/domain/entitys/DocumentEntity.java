@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,8 +12,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "tb_beneficiary")
-public class Beneficiary {
+@Table(name = "tb_document")
+public class DocumentEntity {
 
     @Id
     @EqualsAndHashCode.Include
@@ -24,13 +22,10 @@ public class Beneficiary {
     private UUID id;
 
     @NonNull
-    private String name;
+    private String typeDocument;
 
     @NonNull
-    private String telNumber;
-
-    @NonNull
-    private Date birthDate;
+    private String description;
 
     @NonNull
     private LocalDateTime inclusionDate;
@@ -38,10 +33,8 @@ public class Beneficiary {
     private LocalDateTime updateDate;
 
     @NonNull
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "beneficiary", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Document> document;
-
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "beneficiaryEntity", referencedColumnName = "id", nullable = false)
+    private BeneficiaryEntity beneficiaryEntity;
 
 }

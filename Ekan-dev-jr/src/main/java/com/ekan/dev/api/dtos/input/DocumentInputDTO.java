@@ -3,7 +3,7 @@ package com.ekan.dev.api.dtos.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
-public record DocumentoInputDTO(
+public record DocumentInputDTO(
 
         @NotBlank(message = "O documento não pode ser nulo ou vazio")
         String typeDocument,

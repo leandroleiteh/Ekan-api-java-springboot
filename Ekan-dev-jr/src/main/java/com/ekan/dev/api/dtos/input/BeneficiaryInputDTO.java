@@ -19,7 +19,7 @@ public record BeneficiaryInputDTO(
         Date birthDate,
 
         @NotEmpty(message = "Preencha com pelo menos 1 documento")
-        List<DocumentoInputDTO> documentoInputDTOS
+        List<DocumentInputDTO> documentInputDTOS
 
 ) {
 }
