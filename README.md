@@ -38,7 +38,8 @@ Esta é uma API REST desenvolvida para o gerenciamento de beneficiários e docum
 Exemplo de body para POST: 
 
 
-```{
+```
+{
   "name": "Leandro ",
   "telNumber": "11947165215",
   "birthDate": "2001-05-30",  // Formato de data (YYYY-MM-DD)
