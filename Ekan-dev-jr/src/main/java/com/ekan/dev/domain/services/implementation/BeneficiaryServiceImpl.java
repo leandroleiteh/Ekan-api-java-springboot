@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -55,11 +54,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
         List<DocumentEntity> documentEntities = beneficiaryEntity.getDocumentEntity();
 
-        List<DocumentOutputDTO> documentOutputDTOs = documentEntities.stream()
+        return documentEntities.stream()
                 .map(this::mapToDocumentOutputDTO)
-                .collect(Collectors.toList());
-
-        return documentOutputDTOs;
+                .toList();
     }
 
     @Override
@@ -80,12 +77,14 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
         Optional<BeneficiaryEntity> idBeneficiary = beneficiaryRepository.findById(id);
 
-        if (idBeneficiary.isEmpty()) throw new ResourceNotFoundException("Beneficiário com id: " + id + " não encontrado!");
+        if (idBeneficiary.isEmpty())
+            throw new ResourceNotFoundException("Beneficiário com id: " + id + " não encontrado!");
 
         beneficiaryRepository.deleteById(id);
     }
 
-    private void createCascadeDocumentForBeneficiary(BeneficiaryInputDTO beneficiaryInputDTO, BeneficiaryEntity beneficiaryEntity) {
+    @Override
+    public void createCascadeDocumentForBeneficiary(BeneficiaryInputDTO beneficiaryInputDTO, BeneficiaryEntity beneficiaryEntity) {
         List<DocumentEntity> listDocuments = beneficiaryInputDTO.documentInputDTOS()
                 .stream()
                 .map(documentInputDTO -> new DocumentEntity(
@@ -99,7 +98,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     }
 
 
-    private BeneficiaryOutputDTO outputBeneficiaryAssembler(BeneficiaryEntity beneficiary) {
+    @Override
+    public BeneficiaryOutputDTO outputBeneficiaryAssembler(BeneficiaryEntity beneficiary) {
         return new BeneficiaryOutputDTO(
                 beneficiary.getId(),
                 beneficiary.getName(),
@@ -118,7 +118,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
     }
 
-    private DocumentOutputDTO mapToDocumentOutputDTO(DocumentEntity documentEntity) {
+    @Override
+    public DocumentOutputDTO mapToDocumentOutputDTO(DocumentEntity documentEntity) {
         return new DocumentOutputDTO(
                 documentEntity.getId(),
                 documentEntity.getTypeDocument(),
@@ -128,7 +129,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         );
     }
 
-    private BeneficiaryEntity searchForIdEntity(UUID id) {
+    @Override
+    public BeneficiaryEntity searchForIdEntity(UUID id) {
         return beneficiaryRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Beneficiário com id: " + id + " não encontrado!")
         );

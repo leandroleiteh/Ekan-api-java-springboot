@@ -10,9 +10,7 @@ import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
-import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.tags.Tag;
-import org.springdoc.api.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,35 +50,6 @@ public class SpringDocConfig {
                 );
     }
 
-    @Bean
-    public OpenApiCustomiser openApiCustomiser() {
-        return baseOpenApi -> {
-            baseOpenApi.getPaths()
-                    .values()
-                    .forEach(pathItem -> pathItem.readOperationsMap()
-                            .forEach((httpMethod, operation) -> {
-                                ApiResponses responses = operation.getResponses();
-                                switch (httpMethod) {
-                                    case GET, DELETE -> {
-                                        responses.addApiResponse("404",
-                                                new ApiResponse().$ref(notFoundResponse));
-                                    }
-                                    case PUT -> {
-                                        responses.addApiResponse("404", new ApiResponse().$ref(notFoundResponse));
-                                        responses.addApiResponse("400",
-                                                new ApiResponse().$ref(badRequestResponse));
-                                    }
-                                    case POST -> {
-                                        responses.addApiResponse("400",
-                                                new ApiResponse().$ref(badRequestResponse));
-                                    }
-                                    default ->
-                                            responses.addApiResponse("500", new ApiResponse().$ref(internalServerErrorResponse));
-                                }
-                            })
-                    );
-        };
-    }
 
     private Map<String, ApiResponse> gerarResponses() {
 

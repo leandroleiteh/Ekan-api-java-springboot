@@ -4,7 +4,7 @@ package com.ekan.dev.api.controllers;
 import com.ekan.dev.api.dtos.input.BeneficiaryInputDTO;
 import com.ekan.dev.api.dtos.output.BeneficiaryOutputDTO;
 import com.ekan.dev.api.dtos.output.DocumentOutputDTO;
-import com.ekan.dev.domain.services.implementation.BeneficiaryServiceImpl;
+import com.ekan.dev.domain.services.BeneficiaryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -28,7 +28,7 @@ import java.util.UUID;
 @Tag(name = "Benefiary")
 public class BeneficiaryController {
 
-    private final BeneficiaryServiceImpl beneficiaryService;
+    private final BeneficiaryService beneficiaryService;
 
     @Operation(
             summary = "Criar uma novo beneficiário",
@@ -91,7 +91,7 @@ public class BeneficiaryController {
             }
     )
     @PutMapping("{beneficiaryId}")
-    public ResponseEntity<BeneficiaryOutputDTO> update(@PathVariable UUID beneficiaryId, @RequestBody @Valid BeneficiaryInputDTO beneficiaryInputDTO){
+    public ResponseEntity<BeneficiaryOutputDTO> update(@PathVariable UUID beneficiaryId, @RequestBody @Valid BeneficiaryInputDTO beneficiaryInputDTO) {
         BeneficiaryOutputDTO buildingOutputDTO = beneficiaryService.updateBeneficiary(beneficiaryId, beneficiaryInputDTO);
 
         return ResponseEntity.status(HttpStatus.OK).body(buildingOutputDTO);
