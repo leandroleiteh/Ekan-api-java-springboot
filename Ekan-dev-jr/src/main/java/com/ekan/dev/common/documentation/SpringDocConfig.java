@@ -24,9 +24,9 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @OpenAPIDefinition
 public class SpringDocConfig {
 
-    private static final String badRequestResponse = "BadRequestResponse";
-    private static final String notFoundResponse = "NotFoundResponse";
-    private static final String internalServerErrorResponse = "InternalServerErrorResponse";
+    private static final String BAD_REQUEST_RESPONSE = "BadRequestResponse";
+    private static final String NOT_FOUND_RESPONSE = "NotFoundResponse";
+    private static final String INTERNAL_SERVER_ERROR_RESPONSE = "InternalServerErrorResponse";
 
     @Bean
     public OpenAPI baseOpenApi() {
@@ -59,16 +59,16 @@ public class SpringDocConfig {
                 .addMediaType(APPLICATION_JSON_VALUE,
                         new MediaType().schema(new Schema<Problem>().$ref("Problem")));
 
-        apiResponseMap.put(badRequestResponse, new ApiResponse()
+        apiResponseMap.put(BAD_REQUEST_RESPONSE, new ApiResponse()
                 .description("Bad Request")
                 .content(content));
 
-        apiResponseMap.put(notFoundResponse, new ApiResponse()
+        apiResponseMap.put(NOT_FOUND_RESPONSE, new ApiResponse()
                 .description("Not Found")
                 .content(content));
 
 
-        apiResponseMap.put(internalServerErrorResponse, new ApiResponse()
+        apiResponseMap.put(INTERNAL_SERVER_ERROR_RESPONSE, new ApiResponse()
                 .description("Internal Server Error Response")
                 .content(content));
 

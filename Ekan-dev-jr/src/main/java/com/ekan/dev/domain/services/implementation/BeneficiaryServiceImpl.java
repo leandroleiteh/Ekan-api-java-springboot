@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -34,6 +35,8 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
                 LocalDateTime.now()
         );
 
+
+
         createCascadeDocumentForBeneficiary(beneficiaryInputDTO, beneficiaryEntity);
 
         return outputBeneficiaryAssembler(beneficiaryRepository.save(beneficiaryEntity));
@@ -48,9 +51,9 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     }
 
     @Override
-    public List<DocumentOutputDTO> findAllDocumentsForIdOfBeneficiary(UUID beneficiaryId) {
-        BeneficiaryEntity beneficiaryEntity = beneficiaryRepository.findById(beneficiaryId)
-                .orElseThrow(() -> new ResourceNotFoundException("Beneficiário com id: " + beneficiaryId + " não encontrado!"));
+    public List<DocumentOutputDTO> findAllDocumentsForIdOfBeneficiary(UUID id) {
+        BeneficiaryEntity beneficiaryEntity = beneficiaryRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Beneficiário com id: " + id + " não encontrado!"));
 
         List<DocumentEntity> documentEntities = beneficiaryEntity.getDocumentEntity();
 

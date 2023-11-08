@@ -1,7 +1,5 @@
 package com.ekan.dev.api.dtos.output;
 
-import com.ekan.dev.api.dtos.input.BeneficiaryInputDTO;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 

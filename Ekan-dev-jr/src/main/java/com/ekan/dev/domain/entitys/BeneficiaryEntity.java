@@ -40,7 +40,5 @@ public class BeneficiaryEntity {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "beneficiaryEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DocumentEntity> documentEntity;
 
+    }
 
-
-
-}

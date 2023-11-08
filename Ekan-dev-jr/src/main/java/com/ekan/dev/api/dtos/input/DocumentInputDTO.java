@@ -9,10 +9,7 @@ public record DocumentInputDTO(
         String typeDocument,
 
         @NotBlank(message = "A descrição não pode ser nulo ou vazio")
-        String description,
-
-        @NotEmpty(message = "Preencha um beneficiário")
-        BeneficiaryInputDTO beneficiaryInputDTO
+        String description
 
 ) {
 }
